@@ -1,0 +1,52 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    gitlab.com/gmacedonio/vlava:
+      branch: master
+      repo: https://gitlab.com/gmacedonio/vlava.git
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      gitlab.com/gmacedonio/vlava git:
+        commands:
+        - /usr/bin/env sh .sqa/script.lousy-dandelion-drever.sh
+        container: qc.acc_blurry-puce-javanese
+  QC.Doc:
+    repos:
+      gitlab.com/gmacedonio/vlava find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.cozy-amaranth-hippopotamus.sh
+        container: qc.doc_tasty-cerulean-saola
+      gitlab.com/gmacedonio/vlava git:
+        commands:
+        - /usr/bin/env sh .sqa/script.shabby-amber-shrew.sh
+        container: qc.doc_randy-champagne-bordeaux
+      gitlab.com/gmacedonio/vlava markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.clammy-harlequin-swan.sh
+        container: qc.doc_hilly-cardinal-zebra
+  QC.Lic:
+    repos:
+      gitlab.com/gmacedonio/vlava licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.hasty-wheat-grouse.sh
+        container: qc.lic_homely-red-beetle
+  QC.Sty:
+    repos:
+      gitlab.com/gmacedonio/vlava oclint:
+        commands:
+        - /usr/bin/env sh .sqa/script.shabby-smalt-dane.sh
+        container: qc.sty_frumpy-lime-mammoth
+  QC.Ver:
+    repos:
+      gitlab.com/gmacedonio/vlava get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.wimpy-amber-dodo.sh
+        container: qc.ver_stealthy-turquoise-dormouse
+timeout: 5400
